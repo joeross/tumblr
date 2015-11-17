@@ -1,0 +1,36 @@
+/* theme: Diet Cig https://www.tumblr.com/theme/39686 */
+
+iframe {
+    max-width:100%;
+}
+
+section.feed {
+    display:none;
+}
+
+body {
+    background:#fff;
+}
+
+.post--link .post__title a::after {
+    content:' ↠';
+}
+
+.sidebar {
+    
+    background:#ddd;
+    
+}
+
+.sidebar p {
+    color:#333333;
+}
+
+.sidebar a {
+    color:#327ccb;
+}
+
+.sidebar a:hover {
+    border-bottom:1px dotted #327cc;
+    
+}
