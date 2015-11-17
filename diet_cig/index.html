@@ -1,0 +1,635 @@
+<html lang="en">
+<head>
+	<!-- Diet Cig v1.0.0 | Copyright © 2015 by Theme Grinders -->
+
+	{MobileAppHeaders}
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta charset="utf-8">
+
+	<title>{Title}{block:SearchPage} ({lang:Search results for SearchQuery}){/block:SearchPage}{block:PermalinkPage}{block:PostSummary} – {PostSummary}{/block:PostSummary}{/block:PermalinkPage}</title>
+
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family={text:Alternative Font}:400,700">
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family={text:Default Font}:400,700">
+
+	<link rel="stylesheet" href="http://static.tumblr.com/1iqae8r/OP9nltcf1/theme.css">
+
+	{block:Description}
+	<meta name="description" content="{MetaDescription}">
+	{/block:Description}
+
+	<link rel="alternate" type="application/rss+xml" href="{RSS}">
+	<link rel="apple-touch-icon-precomposed" href="{PortraitURL-128}">
+	<link rel="shortcut icon" href="{Favicon}">
+
+	{block:Hidden}
+	<meta name="color:Background Color" content="#478eb6">
+	<meta name="color:Accent Color" content="#478eb6">
+	<meta name="color:Default Font Color" content="#5a5959">
+	<meta name="color:Heading Font Color" content="#1c1919">
+	<meta name="color:Excerpt Font Color" content="#1c1919">
+
+	<meta name="image:Background" content="http://static.tumblr.com/1iqae8r/RvNnkl501/background.jpg">
+
+	<meta name="if:Format Post Excerpt" content="1">
+	<meta name="if:Show Background Image" content="1">
+	<meta name="if:Show Links" content="1">
+	<meta name="if:Show Exif" content="1">
+	<meta name="if:Show Search" content="1">
+
+	<meta name="text:Behance Username" content="#">
+	<meta name="text:Dribbble Username" content="#">
+	<meta name="text:Pinterest Username" content="#">
+	<meta name="text:Twitter Username" content="#">
+	<meta name="text:Vine User Id" content="#">
+	<meta name="text:Flickr User Id" content="#">
+	<meta name="text:Linkedin User Id" content="#">
+	<meta name="text:Youtube Username" content="#">
+	<meta name="text:Lastfm Username" content="#">
+	<meta name="text:Instagram Username" content="#">
+	<meta name="text:Github Username" content="#">
+	<meta name="text:Facebook Username" content="#">
+
+	<meta name="text:Disqus Shortname" content="">
+	<meta name="text:Google Analytics ID" content="">
+
+	<meta name="text:Default Font" content="Open Sans">
+	<meta name="text:Alternative Font" content="Istok Web">
+	<meta name="text:Heading Font" content="Istok Web">
+	<meta name="text:Excerpt Font" content="Open Sans">
+
+	<meta name="text:Sidebar Opacity" content="0.85">
+	{/block:Hidden}
+
+	<style>
+
+		/* Backgrounds
+		==========================================================*/
+		.post__media a:before,
+		.dropdown__link:hover { background-color: {color:Accent Color}; }
+
+		body {
+			background-color: {color:Background Color};
+
+			{block:IfShowBackgroundImage}
+			background-image: url("{image:Background}");
+			{/block:IfShowBackgroundImage}
+		}
+
+		.sidebar { background: rgba(6, 6, 6, {image:Sidebar Opacity}); }
+
+		@media screen and (max-width: 800px) {
+			.sidebar { background: rgb(6, 6, 6); }
+		}
+
+		/* Borders
+		==========================================================*/
+		.dropdown__item:nth-child(2):hover:after,
+		.dropdown:after { border-top-color: {color:Accent Color}; }
+
+		.dropdown__item + .dropdown__item { border-left-color: {color:Accent Color}; }
+
+		.dropdown { border-color: {color:Accent Color}; }
+
+		/* Colors
+		==========================================================*/
+		.read_more_outer:after,
+		.post--link .post__title a,
+		.links__link:hover,
+		a.menu__link:hover,
+		.dropdown__link,
+		a { color: {color:Accent Color}; }
+
+		body { color: {color:Default Font Color}; }
+
+		.h1 a, .h2 a, .h3 a, .h4 a, .h5 a, .h6 a,
+		h1 a, h2 a, h3 a, h4 a, h5 a, h6 a,
+		.h1, .h2, .h3, .h4, .h5, .h6,
+		h1, h2, h3, h4, h5, h6 { color: {color:Heading Font Color}; }
+
+		/* Fonts
+		==========================================================*/
+		.header__description,
+		.footer,
+		.tweet,
+		.post__media-caption,
+		.chat__name,
+		.post__date,
+		.post__tags { font-family: "{text:Alternative Font}", Arial, sans-serif; }
+
+		.h1, .h2, .h3, .h4, .h5, .h6,
+		h1, h2, h3, h4, h5, h6 { font-family: "{text:Heading Font}", Arial, sans-serif; }
+
+		body { font-family: "{text:Default Font}", Arial, sans-serif; }
+
+		/* Other
+		==========================================================*/
+		{block:IfFormatPostExcerpt}
+		.post--text .post__content > p:first-child {
+			font-size: 1.125em;
+			line-height: 1.88888889;
+			margin: 0;
+		}
+
+		.post--quote .post__content > p:first-child,
+		.post--text .post__content > p:first-child {
+			color: {color:Excerpt Font Color};
+			font-family: "{text:Excerpt Font}", Arial, sans-serif;
+		}
+		{/block:IfFormatPostExcerpt}
+
+		/* Custom CSS
+		==========================================================*/
+		{CustomCSS}
+
+	</style>
+</head>
+<body class="{block:PermalinkPage}permalink{/block:PermalinkPage}{block:IndexPage}index{/block:IndexPage}">
+	<div class="wrapper">
+		<button type="button" class="sidebar-toggle js-toggle-menu">
+			<i class="icon-menu"></i>
+		</button><!-- /.sidebar-toggle -->
+
+		<div class="sidebar js-make-scrollable">
+			<div class="sidebar__inner">
+				<header class="header" role="banner">
+					<a href="{BlogURL}" class="header__avatar avatar">
+						<img src="{PortraitURL-128}" width="70" height="70" alt="{PlaintextTitle}" class="avatar__photo">
+					</a><!-- /.avatar -->
+
+					<h1 class="header__title">
+						<a href="{BlogURL}">{Title}</a>
+					</h1><!-- /.header__title -->
+
+					{block:Description}
+					<p class="header__description">{Description}</p>
+					{/block:Description}
+				</header><!-- /.header -->
+
+				{block:IfShowLinks}
+				<ul class="links">
+					{block:IfBehanceUsername}
+					<li class="links__item">
+						<a href="https://www.behance.net/{text:Behance Username}" class="links__link" title="Behance">
+							<i class="icon-behance"></i>
+						</a><!-- /.links__link -->
+					</li><!-- /.links__item -->
+					{/block:IfBehanceUsername}
+
+					{block:IfDribbbleUsername}
+					<li class="links__item">
+						<a href="http://dribbble.com/{text:Dribbble Username}" class="links__link" title="Dribbble">
+							<i class="icon-dribbble"></i>
+						</a><!-- /.links__link -->
+					</li><!-- /.links__item -->
+					{/block:IfDribbbleUsername}
+
+					{block:IfTwitterUsername}
+					<li class="links__item">
+						<a href="http://twitter.com/{text:Twitter Username}" class="links__link" title="Twitter">
+							<i class="icon-twitter"></i>
+						</a><!-- /.links__link -->
+					</li><!-- /.links__item -->
+					{/block:IfTwitterUsername}
+
+					{block:IfVineUserId}
+					<li class="links__item">
+						<a href="https://vine.co/u/{text:Vine User Id}" class="links__link">
+							<i class="icon-vine"></i>
+						</a><!-- /.links__link -->
+					</li><!-- /.links__item -->
+					{/block:IfVineUserId}
+
+					{block:IfPinterestUsername}
+					<li class="links__item">
+						<a href="https://www.pinterest.com/{text:Pinterest Username}/" class="links__link">
+							<i class="icon-pinterest"></i>
+						</a><!-- /.links__link -->
+					</li><!-- /.links__item -->
+					{/block:IfPinterestUsername}
+
+					{block:IfFlickrUserId}
+					<li class="links__item">
+						<a href="https://www.flickr.com/photos/{text:Flickr User Id}/" class="links__link">
+							<i class="icon-flickr"></i>
+						</a><!-- /.links__link -->
+					</li><!-- /.links__item -->
+					{/block:IfFlickrUserId}
+
+					{block:IfLinkedinUserId}
+					<li class="links__item">
+						<a href="https://www.linkedin.com/profile/view?id={text:Linkedin User Id}" class="links__link">
+							<i class="icon-linkedin"></i>
+						</a><!-- /.links__link -->
+					</li><!-- /.links__item -->
+					{/block:IfLinkedinUserId}
+
+					{block:IfYoutubeUsername}
+					<li class="links__item">
+						<a href="https://www.youtube.com/{text:Youtube Username}" class="links__link">
+							<i class="icon-youtube"></i>
+						</a><!-- /.links__link -->
+					</li><!-- /.links__item -->
+					{/block:IfYoutubeUsername}
+
+					{block:IfLastfmUsername}
+					<li class="links__item">
+						<a href="http://www.lastfm.com/user/{text:Lastfm Username}" class="links__link">
+							<i class="icon-lastfm"></i>
+						</a><!-- /.links__link -->
+					</li><!-- /.links__item -->
+					{/block:IfLastfmUsername}
+
+					{block:IfInstagramUsername}
+					<li class="links__item">
+						<a href="https://instagram.com/{text:Instagram Username}/" class="links__link">
+							<i class="icon-instagram"></i>
+						</a><!-- /.links__link -->
+					</li><!-- /.links__item -->
+					{/block:IfInstagramUsername}
+
+					{block:IfGithubUsername}
+					<li class="links__item">
+						<a href="https://github.com/{text:Github Username}" class="links__link">
+							<i class="icon-github"></i>
+						</a><!-- /.links__link -->
+					</li><!-- /.links__item -->
+					{/block:IfGithubUsername}
+
+{block:IfFacebookUsername}
+					<li class="links__item">
+						<a href="https://facebook.com/{text:Facebook Username}" class="links__link">
+							<i class="icon-facebook"></i>
+						</a><!-- /.links__link -->
+					</li><!-- /.links__item -->
+					{/block:IfFacebookUsername}
+
+					<li class="links__item">
+						<a href="{RSS}" class="links__link" title="RSS">
+							<i class="icon-rss"></i>
+						</a><!-- /.links__link -->
+					</li><!-- /.links__item -->
+				</ul><!-- /.links -->
+				{/block:IfShowLinks}
+
+				<nav class="nav" role="navigation">
+					<ul class="menu">
+						{block:AskEnabled}
+						<li class="menu__item">
+							<a href="/ask" class="menu__link">{AskLabel}</a>
+						</li><!-- /.menu__item -->
+						{/block:AskEnabled}
+
+						{block:IfShowArchive}
+						<li class="menu__item">
+							<a href="/archive" class="menu__link">{lang:Archive}</a>
+						</li><!-- /.menu__item -->
+						{/block:IfShowArchive}
+
+						{block:Pages}
+						<li class="menu__item">
+							<a href="{URL}" class="menu__link">{Label}</a>
+						</li><!-- /.menu__item -->
+						{/block:Pages}
+
+						{block:SubmissionsEnabled}
+						<li class="menu__item">
+							<a href="/submit" class="menu__link">{SubmitLabel}</a>
+						</li><!-- /.menu__item -->
+						{/block:SubmissionsEnabled}
+					</ul><!-- /.menu -->
+				</nav><!-- /.nav -->
+
+				{block:IfShowSearch}
+				<form action="/search" method="get" accept-charset="utf-8" class="search">
+					<input type="search" name="q" value="{SearchQuery}" placeholder="{lang:Search}" class="search__field">
+
+					<button type="button" class="search__toggle js-toggle-search">
+						<i class="icon-search"></i>
+					</button><!-- .search__toggle -->
+				</form><!-- /.search -->
+				{/block:IfShowSearch}
+
+				{block:Twitter}
+				<section class="feed">
+					<h1 class="feed__title">Twitter feed</h1>
+
+					<div id="tweets"></div>
+				</section><!-- /.feed -->
+				{/block:Twitter}
+
+				<footer class="footer" role="contentinfo">
+					<p class="footer__copyright">© {CopyrightYears} by <a href="{BlogURL}">{PlaintextTitle}</a>. All rights reserved. <a href="#">Diet Cig</a> theme by <a href="http://bit.ly/1Fl1KES">Theme Grinders</a>.</p>
+				</footer><!-- /.footer -->
+			</div><!-- /.sidebar__inner -->
+		</div><!-- /.sidebar -->
+
+		<div class="content js-make-scrollable" role="main">
+			<div class="content__inner">
+				{block:Posts}
+				<article class="post post--{PostType} content__row">
+					{block:Audio}
+					<figure class="post__media">
+						{AudioPlayer}
+					</figure><!-- /.post__media -->
+					{/block:Audio}
+
+					{block:Photoset}
+					<figure class="post__media js-lightbox">
+						<div class="photoset js-photoset" data-layout="{PhotosetLayout}">
+							{block:Photos}
+							<img src="{PhotoURL-500}" alt="{PhotoAlt}" data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}" data-lowres="{PhotoURL-500}" data-highres="{PhotoURL-HighRes}">
+							{/block:Photos}
+						</div><!-- /.photoset -->
+					</figure><!-- /.post__media -->
+					{/block:Photoset}
+
+					{block:Photo}
+					<figure class="post__media js-lightbox">
+						<a href="{PhotoURL-HighRes}" class="post__media-link"{block:LinkURL} data-link-url="{LinkURL}"{/block:LinkURL}>
+							<img src="{PhotoURL-HighRes}" width="{PhotoWidth-HighRes}" height="{PhotoHeight-HighRes}" alt="{PhotoAlt}" data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}" data-lowres="{PhotoURL-500}" data-highres="{PhotoURL-HighRes}">
+						</a><!-- /.post__media-link -->
+
+						{block:IfShowExif}
+						{block:Exif} 
+						<figcaption class="post__media-caption exif">
+							{block:Camera}
+							<span class="exif__item">Camera: {Camera};</span>
+							{/block:Camera}
+
+							{block:Exposure}
+							<span class="exif__item">Exposure: {Exposure};</span>
+							{/block:Exposure}
+
+							{block:FocalLength}
+							<span class="exif__item">Focal length: {FocalLength};</span>
+							{/block:FocalLength}
+
+							{block:Aperture}
+							<span class="exif__item">Aperture: {Aperture}</span>
+							{/block:Aperture}
+						</figcaption><!-- /.post__media-caption -->
+						{/block:Exif} 
+						{/block:IfShowExif}
+					</figure><!-- /.post__media -->
+					{/block:Photo}
+
+					{block:Video}
+					<figure class="post__media">
+						{Video-700}
+					</figure><!-- /.post__media -->
+					{/block:Video}
+
+					<header class="post__header">
+						<a href="{Permalink}" class="post__date">
+							<time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero} {24HourWithZero}:{Minutes}:{Seconds}" title="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero} {24HourWithZero}:{Minutes}:{Seconds}">{TimeAgo}</time>
+						</a><!-- /.post__date -->
+
+						{block:Chat}
+						{block:Title}
+						<h1 class="post__title">
+							<a href="{Permalink}">{Title}</a>
+						</h1><!-- /.post__title -->
+						{/block:Title}
+						{/block:Chat}
+
+						{block:Link}
+						<h1 class="post__title">
+							<a {Target} href="{URL}">{Name}</a>
+						</h1><!-- /.post__title -->
+						{/block:Link}
+
+						{block:Quote}
+						<h1 class="post__title">
+							<a href="{Permalink}">{Quote}</a>
+						</h1><!-- /.post__title -->
+						{/block:Quote}
+
+						{block:Text}
+						{block:Title}
+						<h1 class="post__title">
+							<a href="{Permalink}">{Title}</a>
+						</h1><!-- /.post__title -->
+						{/block:Title}
+						{/block:Text}
+					</header><!-- /.post__header -->
+
+					{block:Audio}
+					{block:Caption}
+					<div class="post__content">
+						{Caption}
+					</div><!-- /.post__content -->
+					{/block:Caption}
+					{/block:Audio}
+
+					{block:Chat}
+					<ol class="chat">
+						{block:Lines}
+						<li class="chat__line">
+							{block:Label}
+							<span class="chat__name">{Label}</span>
+							{/block:Label}
+
+							<span class="chat__message">{Line}</span>
+						</li><!-- /.chat__line -->
+						{/block:Lines}
+					</ol><!-- /.chat -->
+					{/block:Chat}
+
+					{block:Link}
+					{block:Description}
+					<div class="post__content">
+						{Description}
+					</div><!-- /.post__content -->
+					{/block:Description}
+					{/block:Link}
+
+					{block:Photoset}
+					{block:Caption}
+					<div class="post__content">
+						{Caption}
+					</div><!-- /.post__content -->
+					{/block:Caption}
+					{/block:Photoset}
+
+					{block:Photo}
+					{block:Caption}
+					<div class="post__content">
+						{Caption}
+					</div><!-- /.post__content -->
+					{/block:Caption}
+					{/block:Photo}
+
+					{block:Quote}
+					{block:Source}
+					<div class="post__content">
+						{Source}
+					</div><!-- /.post__content -->
+					{/block:Source}
+					{/block:Quote}
+
+					{block:Text}
+					<div class="post__content">
+						{Body}
+					</div><!-- /.post__content -->
+					{/block:Text}
+
+					{block:Video}
+					{block:Caption}
+					<div class="post__content">
+						{Caption}
+					</div><!-- /.post__content -->
+					{/block:Caption}
+					{/block:Video}
+
+					<footer class="post__footer">
+						<ul class="post__options">
+							<li class="post__options-item">
+								<div class="post__option">
+									<button type="button" role="button" class="dropdown__toggle js-toggle-dropdown">
+										<i class="icon-share"></i>
+									</button><!-- /.dropdown__toggle -->
+								</div><!-- /.post__option -->
+
+								<ul class="dropdown">
+									<li class="dropdown__item">
+										<a href="http://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]={URLEncodedShortURL}{block:Answer}&amp;p[title]={lang:Asker asked}:%20{PlaintextQuestion}&amp;p[images][0]=http://assets.tumblr.com/images/og/chat_200.png&amp;p[summary]={PlaintextAnswer}{/block:Answer}{block:Audio}&amp;p[title]={block:TrackName}{PlaintextTrackName}{/block:TrackName}{block:Artist}%20%3A%20{PlaintextArtist}{/block:Artist}&amp;p[images][0]={block:AlbumArt}{URLEncodedAlbumArtURL}{/block:AlbumArt}&amp;p[summary]={block:Caption}{PlaintextCaption}{/block:Caption}{/block:Audio}{block:Chat}&amp;p[title]={block:Title}{PlaintextTitle}{/block:Title}&amp;p[images][0]=http://assets.tumblr.com/images/og/chat_200.png&amp;p[summary]={block:Lines}{block:Label}{PlaintextLabel}{/block:Label}{PlaintextLine}%0A{/block:Lines}{/block:Chat}{block:Link}&amp;p[title]={PlaintextName}&amp;p[images][0]=http://assets.tumblr.com/images/og/link_200.png&amp;p[summary]={block:Description}{PlaintextDescription}{/block:Description}{/block:Link}{block:Photo}&amp;p[title]={PlaintextTitle}&amp;p[images][0]={URLEncodedPhotoURL-250}&amp;p[summary]={block:Caption}{PlaintextCaption}{/block:Caption}{/block:Photo}{block:Photoset}&amp;p[title]={PlaintextTitle}{block:Photos}&amp;p[images][0]={URLEncodedPhotoURL-250}{/block:Photos}&amp;p[summary]={block:Caption}{PlaintextCaption}{/block:Caption}{/block:Photoset}{block:Quote}&amp;p[title]={PlaintextQuote}&amp;p[images][0]=http://assets.tumblr.com/images/og/quote_200.png&amp;p[summary]={block:Source}{PlaintextSource}{/block:Source}{/block:Quote}{block:Text}&amp;p[title]={block:Title}{PlaintextTitle}{/block:Title}&amp;p[images][0]=http://assets.tumblr.com/images/og/text_200.png&amp;p[summary]={PlaintextBody}{/block:Text}{block:Video}&amp;p[title]={block:Caption}{PlaintextCaption}{/block:Caption}&amp;p[images][0]={block:VideoThumbnail}{VideoThumbnailURL}{/block:VideoThumbnail}&amp;p[summary]={block:Caption}{PlaintextCaption}{/block:Caption}{/block:Video}" class="dropdown__link">
+											<i class="icon-facebook"></i>
+										</a><!-- /.dropdown__link -->
+									</li><!-- /.dropdown__item -->
+
+									<li class="dropdown__item">
+										<a href="https://twitter.com/intent/tweet?url={URLEncodedShortURL}&amp;text={block:Text}{block:Title}{PlaintextTitle}%20-%20{/block:Title}{/block:Text}{block:Photo}{block:Caption}{PlaintextCaption}%20-%20{/block:Caption}{/block:Photo}{block:Photoset}{block:Caption}{PlaintextCaption}%20-%20{/block:Caption}{/block:Photoset}{block:Quote}{PlaintextQuote}%20-%20{/block:Quote}{block:Link}{PlaintextName}%20-%20{/block:Link}{block:Chat}{block:Title}{PlaintextTitle}%20-%20{/block:Title}{/block:Chat}{block:Audio}{block:TrackName}{PlaintextTrackname}{/block:TrackName}{block:Artist}%20-%20{PlaintextArtist}{/block:Artist}%20%3A%20{/block:Audio}{block:Video}{block:Caption}{PlaintextCaption}%20-%20{/block:Caption}{/block:Video}{block:Answer}{lang:Asker asked}%3A%0A{PlaintextQuestion}%20-%20{/block:Answer}" class="dropdown__link">
+											<i class="icon-twitter"></i>
+										</a><!-- /.dropdown__link -->
+									</li><!-- /.dropdown__item -->
+
+									<li class="dropdown__item">
+										<a href="http://pinterest.com/pin/create/button/?url={URLEncodedShortURL}" class="dropdown__link">
+											<i class="icon-pinterest"></i>
+										</a><!-- /.dropdown__link -->
+									</li><!-- /.dropdown__item -->
+								</ul><!-- /.dropdown -->
+							</li><!-- /.post__options-item -->
+
+							<li class="post__options-item">
+								<div class="post__option">
+									{ReblogButton size="16" color="grey"}
+								</div><!-- /.post__option -->
+							</li><!-- /.post__options-item -->
+
+							<li class="post__options-item">
+								<div class="post__option">
+									{LikeButton size="16" color="grey"}
+								</div><!-- /.post__option -->
+							</li><!-- /.post__options-item -->
+						</ul><!-- /.post__options -->
+
+						{block:HasTags}
+						<ul class="post__tags">
+							{block:Tags}
+							<li class="post__tags-item">
+								<a href="{TagURL}" class="post__tag">{Tag}</a>
+							</li><!-- /.post__tags-item -->
+							{/block:Tags}
+						</ul><!-- /.post__tags -->
+						{/block:HasTags}
+					</footer><!-- /.post__footer -->
+
+					{block:PermalinkPage}
+					<section class="post__section">
+						<h2 class="post__section-title">{NoteCountWithLabel}</h2>
+
+						{PostNotes-64}
+					</section><!-- /.post__section -->
+
+					{block:IfDisqusShortname}
+					<section class="post__section">
+						<div id="disqus_thread"></div>
+
+						<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+					</section><!-- /.post__section -->
+					{/block:IfDisqusShortname}
+					{/block:PermalinkPage}
+				</article><!-- /.post -->
+				{/block:Posts}
+
+				{block:Pagination}
+				<nav class="pagination content__row">
+					{block:PreviousPage}
+					<a href="{PreviousPage}" class="pagination__item pagination__item--previous">
+						<span class="pagination__label">{lang:Previous}</span>
+					</a><!-- /.pagination__item -->
+					{/block:PreviousPage}
+
+					{block:NextPage}
+					<a href="{NextPage}" class="pagination__item pagination__item--next">
+						<span class="pagination__label">{lang:Next}</span>
+					</a><!-- /.pagination__item -->
+					{/block:NextPage}
+
+					<span class="pagination__stats">{lang:Page CurrentPage of TotalPages}</span>
+				</nav><!-- /.pagination -->
+				{/block:Pagination}
+
+				{block:PermalinkPagination}
+				<nav class="pagination content__row">
+					{block:PreviousPost}
+					<a href="{PreviousPost}" class="pagination__item pagination__item--previous">
+						<span class="pagination__label">{lang:Previous}</span>
+					</a><!-- /.pagination__item -->
+					{/block:PreviousPost}
+
+					{block:NextPost}
+					<a href="{NextPost}" class="pagination__item pagination__item--next">
+						<span class="pagination__label">{lang:Next}</span>
+					</a><!-- /.pagination__item -->
+					{/block:NextPost}
+				</nav><!-- /.pagination -->
+				{/block:PermalinkPagination}
+			</div><!-- /.content__inner -->
+		</div><!-- /.content -->
+	</div><!-- /.wrapper -->
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+	<script src="http://static.tumblr.com/1iqae8r/52Wnlrr92/vendor.js"></script>
+	<script src="http://static.tumblr.com/1iqae8r/KuPnlrr8l/theme.js"></script>
+
+	{block:IfGoogleAnalyticsID}
+	<script>
+		var _gaq = _gaq || [];
+
+		_gaq.push(['_setAccount', '{text:Google Analytics ID}']);
+		_gaq.push(['_setAllowLinker', true]);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+	{/block:IfGoogleAnalyticsID}
+
+	{block:IfDisqusShortname}
+	{block:PermalinkPage}
+	<script>
+		var disqus_shortname  = '{text:Disqus Shortname}';
+		var disqus_identifier = '{Permalink}';
+
+		(function() {
+			var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+			dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+			(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+		})();
+	</script>
+	{/block:PermalinkPage}
+	{/block:IfDisqusShortname}
+
+	{block:Twitter}
+	<script src="/tweets.js"></script>
+	{/block:Twitter}
+</body>
+</html>
